@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os
+import os, sys import win32print
 import numpy
 
 n = numpy.random.randint(4, high=9, size=None)
@@ -31,4 +31,12 @@ with open("algorithms/%s" % random_algorithm_num) as copy:
             file.write("reference example graphs")
 
 #send page to printer
+#printer name will need to be changed per network
 os.system("lpr -P HP_LaserJet_MFP_M129_M134 out.txt")
+
+#uncomment below, comment above, and revise printer name if on Windows
+#p = win32print.OpenPrinter(printer_name)
+#job = win32print.StartDocPrinter(p, 1, (out.txt, None, "RAW"))
+#win32print.StartPagePrinter(p)
+#win32print.WritePrinter(p, out.txt)
+#win32print.EndPagePrinter(p)
