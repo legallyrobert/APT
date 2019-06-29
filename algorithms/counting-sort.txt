@@ -1,0 +1,10 @@
+Counting-Sort(A, k)
+0.  Allocate an array of lists C[0..k]
+2.  for i = 0 to A.length
+3.      key = A[i].key
+4.      appand A[i] to the end of the list C[key]
+5.  index = 0
+6.  for i = 0 to k
+7.      for j = 0 to C[i].length
+8.          A[index] = C[i][j]
+9.          index = index+1

@@ -1,0 +1,22 @@
+Selection-Sort(A)
+1.  for i = 1 to A.length -1
+2.      min = i
+3.      for j = i+1 to A.length
+4.          if A[j] < A[min]
+5.              min = j
+6.      swap A[min] and A[i]
+
+n = 4
+Array = [4, 16, 11, 13]
+Basic-Counting-Sort(A, k)
+1.  Allocate array C[1..k]
+2.  for i=1 to A.length
+3.      C[A[i]] = C[A[i]]+1
+4.  h = 1
+5.  for i = 1 to k
+6.      for j = 1 to C[i]
+7.          A[h] = i
+8.          h = h+1
+
+n = 7
+Array = [16, 10, 10, 1, 9, 13, 3]

@@ -1,0 +1,9 @@
+Basic-Counting-Sort(A, k)
+0.  Allocate array C[0..k]
+2.  for i=0 to A.length
+3.      C[A[i]] = C[A[i]]+1
+4.  h = 0
+5.  for i = 0 to k
+6.      for j = 0 to C[i]
+7.          A[h] = i
+8.          h = h+1
