@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import os, sys import win32print
+import os
+#import win32print
 import numpy
 
 n = numpy.random.randint(4, high=9, size=None)
