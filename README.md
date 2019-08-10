@@ -11,7 +11,7 @@ Algorithm creation, retrieval, and management in exactly 50 lines of shell scrip
 
 To send `apt`'s output to a printer, I recommend piping instructions into `apt`, then `apt` to a print command like `lpr`, e.g.
 
-    echo -e "y\ny\n" | ./apt p | lpr -P $printername
+    echo -e "y\ny\n" | ./apt p | lpr -P $printername    #send random algorithm to printer
 
 ## Installation:
 
