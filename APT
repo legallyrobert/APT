@@ -27,9 +27,7 @@ listandReturn() { printf "Listing contents of %s.\\n" "$1"
     chosen="$(ls -rc "$1" | nl | grep -w "$number" | awk '{print $2}')"
     basefile="$(basename "$chosen")" && base="${basefile%.*}" ;}
 
-returnRandom() { printf "Selecting random algorithm from %s.\\n" "$1"
-    selected="$(ls -rc "$1" | shuf -n 1)"
-    basefile="$(basename "$selected")" && base="${basefile%.*}" ;}
+returnRandom() { selected="$(ls -rc "$1" | shuf -n 1)"; basefile="$(basename "$selected")" && base="${basefile%.*}" ;}
 
 confirm() { read -erp "Really $1 \"$base\"? (y/N) " choice && echo "$choice" | grep -i "^y$" > /dev/null || exit 1 ;}
 
