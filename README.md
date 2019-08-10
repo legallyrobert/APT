@@ -21,3 +21,4 @@ To send `apt`'s output to a printer, I recommend piping instructions into `apt`,
 ## Planned Upgrades:
 
 - automagically add line numbers to raw algorithm file after creation, accordingly revise with edits (use `nl`)
+- command parsing: something like `!array on/off` to toggle array in output. Useful for outputting dfs/bfs with no need for arrays.
