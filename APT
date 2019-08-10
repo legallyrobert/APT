@@ -1,6 +1,8 @@
 #!/bin/bash
 aptdir="/Users/rw/Developer/APT"
-arraymaxsize=10
+arraymaxsize=10 #max size for randomly generated array
+maxkeyvalue=16 #max size for random array keys
+
 [ -z "$EDITOR" ] && EDITOR="vim"
 
 if [ ! -d "$aptdir/algorithms" ]; then
@@ -46,7 +48,7 @@ askPrint() {
 randomArray() {
     counter=0
     while [ "$counter" -le $arraymaxsize ]; do
-        randomarray[$counter]=$((1 + RANDOM % 16)) #max key size of 16
+        randomarray[$counter]=$((1 + RANDOM % $maxkeyvalue)) #max key size of 16
         let "counter += 1"
     done
     printf "[%s]\\n\\n" "${randomarray[*]}" ;}
