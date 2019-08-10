@@ -1,10 +1,10 @@
 #!/bin/bash
 aptdir="/Users/rw/Developer/APT"
+createrandomarray=true #array creation on by default
 arraymaxsize=10 #max size for randomly generated array
 maxkeyvalue=16 #max size for random array keys
 
 [ -z "$EDITOR" ] && EDITOR="vim"
-
 if [ ! -d "$aptdir/algorithms" ]; then
     read -erp "Init APT in $aptdir?" ask && if [ "$ask" = "y" ]; then
         printf "Initializing APT...\\n"
@@ -31,8 +31,7 @@ returnRandom() { selected="$(ls -rc "$1" | shuf -n 1)"; basefile="$(basename "$s
 
 confirm() { read -erp "Really $1 \"$base\"? (y/N) " choice && echo "$choice" | grep -i "^y$" > /dev/null || exit 1 ;}
 
-delete() {
-    rm "$aptdir/algorithms/$basefile" 2>/dev/null && printf "Old algorithm removed.\\n" ;}
+delete() { rm "$aptdir/algorithms/$basefile" 2>/dev/null && printf "Old algorithm removed.\\n" ;}
 
 askPrint() {
     read -erp "Print random algorithm from $1? (y\N) " choice && if [ "$choice" = "y" ]; then
@@ -44,12 +43,13 @@ askPrint() {
     fi ;}
 
 randomArray() {
-    counter=0
-    while [ "$counter" -le $arraymaxsize ]; do
-        randomarray[$counter]=$((1 + RANDOM % $maxkeyvalue)) #max key size of 16
-        let "counter += 1"
-    done
-    printf "[%s]\\n\\n" "${randomarray[*]}" ;}
+    if [ "$createrandomarray" = "true" ]; then
+        counter=0
+        while [ "$counter" -le $arraymaxsize ]; do
+            randomarray[$counter]=$((1 + RANDOM % $maxkeyvalue)) #max key size of 16
+            let "counter += 1"; done
+        printf "[%s]\\n\\n" "${randomarray[*]}"
+    fi ;}
 
 case "$1" in
     n*) newalgorithm ;;
