@@ -1,0 +1,51 @@
+#!/bin/bash
+aptdir="/Users/rw/Developer/APT"
+[ -z "$EDITOR" ] && EDITOR="vim"
+
+if [ ! -d "$aptdir/algorithms" ]; then
+    read -erp "Init APT in $aptdir?" ask && if [ "$ask" = "y" ]; then
+        printf "Initializing APT...\\n"
+        mkdir -pv "$aptdir/algorithms" || printf "Error. Do you have write permissions in this directory?\\n"
+    else
+        exit
+    fi
+fi
+
+newalgorithm() { read -erp "New algorithm name:
+    " title
+    echo "$title" | grep "\"" > /dev/null && printf "Double quotations are not allowed in algorithm names.\\n" && exit
+    algname="$(echo "$title" | iconv -c -f UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr -d '[:blank:]' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
+    [ -f "$aptdir/algorithms/$algname.txt" ] && echo "Error. Algorithm already exists." && exit
+    $EDITOR "$aptdir/algorithms/$algname.txt" ;}
+
+listandReturn() { printf "Listing contents of %s.\\n" "$1" 
+    ls -rc "$1" | awk -F '/' '{print $NF}' | nl
+    read -erp "Pick an algorithm by number to $2, or press ctrl-c to cancel. " number
+    chosen="$(ls -rc "$1" | nl | grep -w "$number" | awk '{print $2}')"
+    basefile="$(basename "$chosen")" && base="${basefile%.*}" ;}
+
+returnRandom() { printf "Selecting random algorithm from %s.\\n" "$1"
+    selected="$(ls -rc "$1" | shuf -n 1)"
+    basefile="$(basename "$selected")" && base="${basefile%.*}" ;}
+
+confirm() { read -erp "Really $1 \"$base\"? (y/N) " choice && echo "$choice" | grep -i "^y$" > /dev/null || exit 1 ;}
+
+delete() {
+    rm "$aptdir/algorithms/$basefile" 2>/dev/null && printf "Old algorithm removed.\\n" ;}
+
+askPrint() {
+    read -erp "Print random algorithm from $1? (y\N) " choice && if [ "$choice" = "y" ]; then
+    returnRandom "$aptdir/algorithms" && confirm "print" && printf "$(cat "$aptdir/algorithms/$basefile")\\n"
+    elif [ "$choice" = "n" ]; then
+        listandReturn "$aptdir/algorithms/" "print" && confirm "print" && printf "$(cat "$aptdir/algorithms/$basefile")\\n"
+    else
+        exit
+    fi ;}
+
+case "$1" in
+    n*) newalgorithm ;;
+    e*) listandReturn "$aptdir"/algorithms/ edit && "$EDITOR" "$aptdir/algorithms/$chosen" ;;
+    d*) listandReturn "$aptdir"/algorithms/ delete && confirm delete && delete ;;
+    p*) askPrint "$aptdir/algorithms" ;;
+    *) printf "Algorithm Practice Tool (APT), version 2.0\\nby Rob Wood <robertwood@uvic.ca>\\n\\nUsage:\\n  apt n:\\tnew algorithm\\n  apt e:\\tedit algorithm\\n  apt d:\\tdelete algorithm\\n  apt p:\\tsend chosen/random algorithm to printer\\n" ;;
+esac
