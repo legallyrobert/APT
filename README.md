@@ -1,13 +1,13 @@
 # apt – Algorithm Practice Tool
 
-Algorithm creation, retrieval, and management in 60 lines of shell script. Written with the intention of practicing sorting algorithms on a randomized array of numbers, sent to a physical printer to be done over a cup of coffee.
+Algorithm creation, retrieval, and management in 60 lines of shell script. Written with the intention of printing out algorithms and a randomized array of numbers, to be practiced over a cup of coffee.
 
 ## Usage
 
-    ./apt n:    #Make a new algorithm
-    ./apt e:    #Edit an existing algorithm
-    ./apt d:    #Delete an algorithm
-    ./apt p:    #Print (stdout) a chosen or random algorithm and random array (default on)
+    ./apt n:    #new algorithm
+    ./apt e:    #edit algorithm
+    ./apt d:    #delete algorithm
+    ./apt p:    #send algorithm and random array to stdout
 
 To send `apt`'s output to a printer, I recommend piping instructions into `apt`, then `apt` to a print command like `lpr`, e.g.
 
