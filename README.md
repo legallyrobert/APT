@@ -1,6 +1,8 @@
 # apt – Algorithm Practice Tool
 
-Algorithm creation, retrieval, and management in 60 lines of shell script. Written with the intention of printing out algorithms and a randomized array of numbers, to be practiced over a cup of coffee.
+When it comes to algorithms, why be inapt?
+
+`apt` is a 60 line shell script for pseudocode algorithm creation, retrieval, and management. Written with the intention of printing out with a randomized array of numbers, to be practiced over a cup of coffee.
 
 ## Usage
 
