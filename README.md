@@ -2,7 +2,7 @@
 
 When it comes to algorithms, why be inapt?
 
-`apt` is a 60 line shell script for pseudocode algorithm creation, retrieval, and management. Written with the intention of printing out with a randomized array of numbers, to be practiced over a cup of coffee.
+`apt` is a small shell script for pseudocode algorithm creation, retrieval, and management. Written with the intention of printing out with a randomized array of numbers, to be practiced over a cup of coffee.
 
 ## Usage
 
