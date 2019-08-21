@@ -52,9 +52,10 @@ randomArray() {
     fi ;}
 
 case "$1" in
-    n*) newalgorithm ;;
-    e*) listandReturn "$aptdir"/algorithms/ edit && "$EDITOR" "$aptdir/algorithms/$chosen" ;;
-    d*) listandReturn "$aptdir"/algorithms/ delete && confirm delete && delete ;;
-    p*) askPrint "$aptdir/algorithms" ;;
-    *) printf "Algorithm Practice Tool (APT), version 2.0\\nby Rob Wood <robertwood@uvic.ca>\\n\\nUsage:\\n  apt n:\\tnew algorithm\\n  apt e:\\tedit algorithm\\n  apt d:\\tdelete algorithm\\n  apt p:\\tsend algorithm and random array to stdout\\n" ;;
+    -n*) newalgorithm ;;
+    -e*) listandReturn "$aptdir"/algorithms/ edit && "$EDITOR" "$aptdir/algorithms/$chosen" && exit 0 ;;
+    -d*) listandReturn "$aptdir"/algorithms/ delete && confirm delete && delete && exit 0 ;;
+    -p*) askPrint "$aptdir/algorithms" && exit 0 ;;
+    -h*) printf "apt, version 2.0\n\nusage: apt [-nedph]\n\n\tn : new algorithm\n\te : edit algorithm\n\td : delete algorithm\n\tp : print chosen or random algorithm\n\th : print this help message\n" && exit 1 ;;
+    *) if [ $# -eq 0 ]; then printf "usage: apt [-nedph]\n"; else printf "apt: illegal option %s\nusage: apt [-nedph]\n"; fi && exit 1 ;;
 esac
