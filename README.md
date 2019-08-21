@@ -6,14 +6,15 @@ When it comes to algorithms, why be inapt?
 
 ## Usage
 
-    ./apt n:    #new algorithm
-    ./apt e:    #edit algorithm
-    ./apt d:    #delete algorithm
-    ./apt p:    #send algorithm and random array to stdout
+    n : new algorithm
+    e : edit algorithm
+    d : delete algorithm
+    p : send algorithm and random array to stdout
+    h : print this help message
 
 To send `apt`'s output to a printer, I recommend piping instructions into `apt`, then `apt` to a print command like `lpr`, e.g.
 
-    echo -e "y\ny\n" | ./apt p | lpr -P $printername    #send random algorithm to printer
+    echo -e "y\ny\n" | ./apt -p | lpr -P $printername    #send random algorithm to printer
 
 ## Installation:
 
